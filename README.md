@@ -103,33 +103,41 @@ sudo apt-get install postgresql libpqxx-dev libglfw3-dev cmake build-essential
    password=your_password_here
    ```
 
-## Building
+## Quick Start
 
-1. **Create build directory**:
-   ```bash
-   mkdir build && cd build
-   ```
+### 1. Install Dependencies (macOS)
+```bash
+brew install postgresql libpqxx glfw cmake
+brew services start postgresql
+```
 
-2. **Configure with CMake**:
-   ```bash
-   cmake ..
-   ```
+### 2. Setup Database
+```bash
+# Create database and user
+createdb hotel_management_db
+psql postgres -c "CREATE USER hotel_user WITH PASSWORD 'hotel123';"
+psql postgres -c "GRANT ALL PRIVILEGES ON DATABASE hotel_management_db TO hotel_user;"
 
-3. **Build**:
-   ```bash
-   cmake --build .
-   ```
+# Run schema and seed data
+psql -U hotel_user -d hotel_management_db -f scripts/setup_db.sql
+psql -U hotel_user -d hotel_management_db -f scripts/seed_data.sql
+```
 
-   Or for faster parallel builds:
-   ```bash
-   cmake --build . -j$(nproc)  # Linux
-   cmake --build . -j$(sysctl -n hw.ncpu)  # macOS
-   ```
+### 3. Configure Application
+```bash
+cp config/database.ini.example config/database.ini
+# Edit config/database.ini with your database password
+```
 
-4. **Run**:
-   ```bash
-   ./bin/HotelManagementSystem
-   ```
+### 4. Build and Run
+```bash
+mkdir build && cd build
+cmake ..
+cmake --build . -j$(sysctl -n hw.ncpu)
+./bin/HotelManagementSystem
+```
+
+🎉 **The application window should open with the dashboard!**
 
 ## Development
 
@@ -204,23 +212,38 @@ The following components are ready to be implemented:
 
 ## Current Status
 
-✅ **Completed**:
-- Project structure setup
-- Build system (CMake)
-- Database schema (9 tables, views, triggers)
-- Seed data (50 rooms, 20 guests, sample bookings)
-- Core infrastructure (Logger, Config, DateUtils, Validators)
-- Database connection layer (DatabaseManager)
-- All data models (Room, Guest, Booking, Payment, Invoice, Service)
-- ImGui and ImPlot integration
+✅ **Completed** (70% Done):
+- ✅ Project structure setup
+- ✅ Build system (CMake)
+- ✅ Database schema (9 tables, views, triggers)
+- ✅ Seed data (50 rooms, 20 guests, sample bookings)
+- ✅ Core infrastructure (Logger, Config, DateUtils, Validators)
+- ✅ Database connection layer (DatabaseManager)
+- ✅ All data models (Room, Guest, Booking, Payment, Invoice, Service)
+- ✅ ImGui and ImPlot integration
+- ✅ **Repository layer (RoomRepository, GuestRepository, BookingRepository)**
+- ✅ **Main application (Application.cpp, main.cpp)**
+- ✅ **Working UI with 4 views (Dashboard, Rooms, Guests, Bookings)**
+- ✅ **Glass morphism theme**
+- ✅ **Real-time database statistics**
 
-🚧 **In Progress**:
-- Repository layer implementation
+🎉 **THE APPLICATION NOW RUNS!**
 
-📋 **Planned**:
-- UI components and views
-- Business logic
-- Testing and optimization
+You can:
+- ✅ Launch the application window
+- ✅ View dashboard with statistics
+- ✅ Browse all rooms in a table
+- ✅ Browse all guests in a table
+- ✅ Browse all bookings in a table
+- ✅ Navigate between views
+
+📋 **Remaining Features** (30%):
+- Add/Edit/Delete functionality in UI
+- Check-in/Check-out workflow
+- Billing and payment processing
+- Invoice generation
+- Advanced filtering and search
+- Reports with charts (using ImPlot)
 
 ## Database Schema Overview
 
