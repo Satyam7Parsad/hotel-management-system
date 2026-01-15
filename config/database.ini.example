@@ -1,0 +1,74 @@
+# Hotel Management System Configuration File
+# Copy this file to 'database.ini' and update with your actual credentials
+# IMPORTANT: Never commit database.ini to version control!
+
+[database]
+# PostgreSQL connection settings
+host=localhost
+port=5432
+dbname=hotel_management_db
+user=hotel_user
+password=your_password_here
+
+# Connection pool settings (optional)
+max_connections=10
+connection_timeout=30
+
+# SSL/TLS settings (set to 'require' for production)
+sslmode=prefer
+
+[application]
+# Window settings
+window_width=1920
+window_height=1080
+window_title=Hotel Management System
+fullscreen=false
+
+# Rendering settings
+vsync=true
+msaa_samples=4
+target_fps=60
+
+# Theme settings
+theme=glass_morphism
+font_size=16.0
+use_custom_font=true
+
+[logging]
+# Logging configuration
+level=INFO
+log_file=hotel_system.log
+max_log_size_mb=10
+rotate_logs=true
+
+# Log levels: DEBUG, INFO, WARNING, ERROR
+# DEBUG: Detailed information for diagnosing problems
+# INFO: General informational messages
+# WARNING: Warning messages for potentially harmful situations
+# ERROR: Error messages for serious problems
+
+[features]
+# Feature flags
+enable_reports=true
+enable_services=true
+enable_invoicing=true
+enable_audit_log=true
+
+# Business rules
+tax_rate=0.10
+default_currency=USD
+date_format=YYYY-MM-DD
+time_format=24h
+
+# Booking rules
+max_booking_days_advance=365
+min_booking_days_notice=1
+default_checkout_time=11:00
+default_checkin_time=15:00
+
+[development]
+# Development/Debug settings (only used when build type is Debug)
+show_demo_window=false
+show_metrics_window=false
+show_imgui_style_editor=false
+enable_debug_logging=true

@@ -1,0 +1,77 @@
+# Build directories
+build/
+cmake-build-*/
+bin/
+lib/
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+HotelManagementSystem
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps/
+
+# IDE-specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Database configuration (contains passwords)
+config/database.ini
+database.ini
+
+# Log files
+*.log
+hotel_system.log
+
+# External libraries (downloaded)
+external/imgui/
+external/implot/
+external/IconFontCppHeaders/
+
+# Assets that might be large
+assets/fonts/*.ttf
+assets/fonts/*.otf
+
+# Backup files
+*.bak
+*.backup
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
